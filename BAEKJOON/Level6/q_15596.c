@@ -5,26 +5,14 @@
  *  Q_Number: 15596
  */
 
-#include <stdio.h>
-
-int main(void)
-{
-    int n, i;
-    int max = 0, temp;
-    int sum = 0;
-    scanf("%d", &n);
-
-    for (i = 0; i < n; i++)
+long long sum(int *a, int n) {
+	long long ans = 0;
+    int i;
+    
+    for(i = 0; i < n; i++)
     {
-        scanf("%d", &temp);
-        sum += temp;
-        if (max < temp)
-        {
-            max = temp;
-        }
+        ans += a[i];
     }
-
-    printf("%f", ((double)sum / (double)max * 100.0) / (double)n);
-
-    return 0;
+    
+	return ans;
 }
