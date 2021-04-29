@@ -1,5 +1,5 @@
 /**
- *  Date: 2021-04-28
+ *  Date: 2021-04-29
  *  Author: threedo29
  *  URL: https://www.acmicpc.net/problem/2941
  *  Q_Number: 2941
@@ -10,143 +10,147 @@
 
 void check_alphabet(char c);
 
-int cnt = 0;
-char arg1 = '\0';
-char arg2 = '\0';
+int g_cnt = 0;
+char g_arg1 = '\0';
+char g_arg2 = '\0';
 
 int main(void)
 {
-    char str[15] = { '\0', };
-    int i, sum = 0;
+    char str[101] = { '\0', };
+    int cnt;
+    int i;
 
     scanf("%s", str);
 
-    for(i = 0; i < strlen(str); i++)
+    cnt = strlen(str);
+
+    for (i = 0; i < cnt; i++)
     {
-        printf("aaa = %d\n", strlen(str));
+        check_alphabet(str[i]);
     }
-    
+
+    printf("%d", g_cnt);
+
     return 0;
 }
 
 void check_alphabet(char c)
 {
-    if(arg1 == '\0' && arg2 == '\0') // ÃÖÃÊ
+    if (g_arg1 == '\0' && g_arg2 == '\0') // ï¿½ï¿½ï¿½ï¿½
     {
-        if(c == 'c' || c == 'd' || c == 'l' || c == 'n' || c == 's' || c == 'z')
+        if (c == 'c' || c == 'd' || c == 'l' || c == 'n' || c == 's' || c == 'z')
         {
-            arg1 = c;
+            g_arg1 = c;
+            g_arg2 = '\0';
         }
-        cnt++;
+        g_cnt++;
     }
-    else if(arg1 != '\0' && arg2 == '\0')
+    else if (g_arg1 != '\0' && g_arg2 == '\0')
     {
-        if(arg1 == 'c')
+        switch (g_arg1)
         {
-            if(c == '=' || c == '-')
+        case 'c':
+            if (c == '=' || c == '-')
             {
-                arg1 = '\0';
-                arg2 = '\0';
+                g_arg1 = '\0';
             }
-            else if(c == arg1)
+            else if (c == 'c' || c == 'd' || c == 'l' || c == 'n' || c == 's' || c == 'z')
             {
-                cnt++;
-                arg1 = c;
-                arg2 = '\0';
+                g_cnt++;
+                g_arg1 = c;
             }
             else
             {
-                cnt++;
-                arg1 = '\0';
-                arg2 = '\0';
+                g_cnt++;
+                g_arg1 = '\0';
+                g_arg2 = '\0';
             }
-        }
-        else if(arg1 == 'd')
-        {
-            if(c == 'z')
+            break;
+        case 'd':
+            if (c == '-')
             {
-                arg2 = c;
+                g_arg1 = '\0';
             }
-            else if(c == '-')
+            else if (c == 'z')
             {
-                arg1 = '\0';
-                arg2 = '\0';
+                g_cnt++;
+                g_arg2 = c;
             }
-            else if(c == arg1)
+            else if (c == 'c' || c == 'd' || c == 'l' || c == 'n' || c == 's')
             {
-                cnt++;
-                arg1 = c;
-                arg2 = '\0';
+                g_cnt++;
+                g_arg1 = c;
             }
             else
             {
-                cnt++;
-                arg1 = '\0';
-                arg2 = '\0';
+                g_cnt++;
+                g_arg1 = '\0';
+                g_arg2 = '\0';
             }
-        }
-        else if(arg1 == 'n' || arg1 == 'l')
-        {
-            if(c == 'j')
+            break;
+        case 'l':
+        case 'n':
+            if (c == 'j')
             {
-                arg1 = '\0';
-                arg2 = '\0';
+                g_arg1 = '\0';
             }
-            if(c == 'n' || c == 'l')
+            else if (c == 'c' || c == 'd' || c == 'l' || c == 'n' || c == 's' || c == 'z')
             {
-                cnt++;
-                arg1 = c;
-                arg2 = '\0';
+                g_cnt++;
+                g_arg1 = c;
             }
             else
             {
-                cnt++;
-                arg1 = '\0';
-                arg2 = '\0';
+                g_cnt++;
+                g_arg1 = '\0';
+                g_arg2 = '\0';
             }
-        }
-        else if(arg1 == 's' || arg1 == 'z')
-        {
-            if(c == '=')
+            break;
+        case 's':
+        case 'z':
+            if (c == '=')
             {
-                arg1 = '\0';
-                arg2 = '\0';
+                g_arg1 = '\0';
             }
-            if(c == arg1)
+            else if (c == 'c' || c == 'd' || c == 'l' || c == 'n' || c == 's' || c == 'z')
             {
-                cnt++;
-                arg1 = c;
-                arg2 = '\0';
+                g_cnt++;
+                g_arg1 = c;
             }
             else
             {
-                cnt++;
-                arg1 = '\0';
-                arg2 = '\0';
+                g_cnt++;
+                g_arg1 = '\0';
+                g_arg2 = '\0';
             }
-        }
-        else {}
-    }
-    else if(arg1 != '\0' && arg2 != '\0')
-    {
-        if(arg1 == 'd' && arg2 == 'z')
-        {
-            if(c == '=')
-            {
-                arg1 = '\0';
-                arg2 = '\0';
-            }
-            else
-            {
-                cnt++;
-                arg1 = '\0';
-                arg2 = '\0';
-            }
+            break;
+        default:
+            break;
         }
     }
-    else
+    else if (g_arg1 != '\0' && g_arg2 != '\0')
     {
-        arg1 = '\0';
-        arg2 = '\0';
+        if (g_arg1 == 'd' && g_arg2 == 'z')
+        {
+            if (c == '=')
+            {
+                g_cnt--;
+                g_arg1 = '\0';
+                g_arg2 = '\0';
+            }
+            else if (c == 'c' || c == 'd' || c == 'l' || c == 'n' || c == 's' || c == 'z')
+            {
+                g_cnt++;
+                g_arg1 = c;
+                g_arg2 = '\0';
+            }
+            else
+            {
+                g_cnt++;
+                g_arg1 = '\0';
+                g_arg2 = '\0';
+            }
+        }
     }
+    else {}
 }
