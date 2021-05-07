@@ -1,8 +1,8 @@
 /**
- *  Date: 2021-04-30
+ *  Date: 2021-05-03
  *  Author: threedo29
- *  URL: https://www.acmicpc.net/problem/2447
- *  Q_Number: 2447
+ *  URL: https://www.acmicpc.net/problem/2556
+ *  Q_Number: 2556
  */
 
 #include <stdio.h>
@@ -10,10 +10,9 @@
 int main(void)
 {
 	int n, i, j;
-	// scanf("%d", &n);
-	n = 5;
+	scanf("%d", &n);
 
-	for (i = 0; i < n * 2 - 1; i++)
+	for (i = 0; i < n; i++)
 	{
 		for (j = 0; j < n; j++)
 		{
