@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int compare(const void* a, const void* b); // ¿À¸§Â÷¼ø ºñ±³ ÇÔ¼ö ±¸Çö
+int compare(const void* a, const void* b); // ì˜¤ë¦„ì°¨ìˆœ ë¹„êµ í•¨ìˆ˜ êµ¬í˜„
 
 int main(void)
 {
@@ -32,7 +32,7 @@ int main(void)
     }
 }
 
- // ¿À¸§Â÷¼ø ºñ±³ ÇÔ¼ö ±¸Çö
+ // ì˜¤ë¦„ì°¨ìˆœ ë¹„êµ í•¨ìˆ˜ êµ¬í˜„
 int compare(const void* a, const void* b)
 {
     int num1 = *(int*)a;
